@@ -234,7 +234,7 @@ def main():
                 answer = query_groq(prompt)
                 st.write(answer)
     else:
-        st.info("Click 'Refresh Data'button from the side bar to load reviews.")
+        st.info("Click 'Refresh Data'button from the left side bar to load reviews.")
 
 if __name__ == "__main__":
     main()
