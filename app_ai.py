@@ -178,7 +178,7 @@ def main():
     review_count = st.sidebar.slider("Number of reviews to fetch", 10, 200, 100)
 
     # Refresh data button
-    if st.sidebar.button("Refresh Data"):
+    if st.sidebar.button("Re-fetch Data"):
         with st.spinner("Scraping data..."):
             st.session_state.data = scrape_ios_reviews(review_count) if platform == "iOS" else scrape_android_reviews(review_count)
             st.session_state.summary = None  # Reset summary when data is refreshed
@@ -201,8 +201,8 @@ def main():
             st.metric("Average Rating", f"{df['rating'].mean():.2f}")
         with col2:
             st.metric("Total Reviews", len(df))
-        with col3:
-            st.metric("Average Sentiment", f"{df['sentiment'].mean():.2f}")
+        # with col3:
+        #     st.metric("Average Sentiment", f"{df['sentiment'].mean():.2f}")
 
         # Visualizations
         display_visualizations(df)
@@ -234,7 +234,7 @@ def main():
                 answer = query_groq(prompt)
                 st.write(answer)
     else:
-        st.info("Click 'Refresh Data' to load reviews.")
+        st.info("Click 'Re-fetch Data'button from the side bar to load reviews.")
 
 if __name__ == "__main__":
     main()
