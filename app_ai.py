@@ -157,7 +157,14 @@ def display_visualizations(df: pd.DataFrame):
     
     sentiment_counts = df['sentiment'].apply(lambda x: 'Positive' if x > 0 else 'Negative' if x < 0 else 'Neutral').value_counts()
     fig = px.pie(values=sentiment_counts.values, names=sentiment_counts.index, title="Sentiment Distribution")
-    st.plotly_chart(fig)
+
+    fig.update_layout(
+    autosize=True,
+    margin=dict(l=0, r=0, t=30, b=0)
+    )
+
+    # Display chart in Streamlit
+    st.plotly_chart(fig, use_container_width=True)
 
 # Main app function
 def main():
